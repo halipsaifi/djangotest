@@ -1,0 +1,16 @@
+1508322175921	geckodriver	INFO	geckodriver 0.18.0
+1508322175926	geckodriver	INFO	Listening on 127.0.0.1:52688
+1508322177033	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1508322177280	addons.xpi	WARN	Error parsing extensions state: [Exception... "Component returned failure code: 0x80520012 (NS_ERROR_FILE_NOT_FOUND) [amIAddonManagerStartup.readStartupData]"  nsresult: "0x80520012 (NS_ERROR_FILE_NOT_FOUND)"  location: "JS frame :: resource://gre/modules/addons/XPIProvider.jsm :: loadExtensionState :: line 1554"  data: no] Stack trace: loadExtensionState()@resource://gre/modules/addons/XPIProvider.jsm:1554 < getInstallState()@resource://gre/modules/addons/XPIProvider.jsm:1589 < checkForChanges()@resource://gre/modules/addons/XPIProvider.jsm:3109 < startup()@resource://gre/modules/addons/XPIProvider.jsm:2188 < callProvider()@resource://gre/modules/AddonManager.jsm:269 < _startProvider()@resource://gre/modules/AddonManager.jsm:739 < startup()@resource://gre/modules/AddonManager.jsm:906 < startup()@resource://gre/modules/AddonManager.jsm:3090 < observe()@jar:file:///usr/lib/firefox/omni.ja!/components/addonManager.js:65
+1508322177912	Marionette	INFO	Enabled via --marionette
+1508322180461	Marionette	INFO	Listening on port 36942
+1508322180558	Marionette	WARN	TLS certificate errors will be ignored for this session
+1508322180607	Marionette	DEBUG	Register listener.js for window 2147483649
+1508322180649	Marionette	DEBUG	Received DOM event "beforeunload" for "about:blank"
+1508322180683	Marionette	DEBUG	Received DOM event "pagehide" for "about:blank"
+1508322180683	Marionette	DEBUG	Received DOM event "unload" for "about:blank"
+1508322180690	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "http://localhost:57047/"
+1508322180709	Marionette	DEBUG	Received DOM event "pageshow" for "http://localhost:57047/"
+1508322181311	Marionette	INFO	New connections will no longer be accepted
+[Child 26689] WARNING: pipe error (18): Connection reset by peer: file /build/firefox-l1g98U/firefox-56.0+build6/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+[Child 26689] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-l1g98U/firefox-56.0+build6/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353

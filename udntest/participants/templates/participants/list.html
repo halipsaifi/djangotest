@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<title>Participants</title>
+<script type='text/javascript'
+  src='http://code.jquery.com/jquery-2.0.2.js'></script>
+<link rel="stylesheet" type="text/css"
+  href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<script type='text/javascript'
+  src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script type='text/javascript'> //<![CDATA[
+$(window).load(function(){
+//save the selector
+$dropdown = $("#contextMenu");
+$(".actionButton").click(function() {
+    //get participant id
+    var id = $(this).closest("tr").children().first().html();
+    //add dropdown menu
+    $(this).after($dropdown);
+    //add participant id
+    $(".action").attr("participantId", id);
+});
+$(".action").click(function() {
+          $('input[name="action"]').val($(this).attr("name"));
+          $('input[name="participantId"]').val($(this).attr("participantId"));
+          $("#listForm").submit();
+});
+}); //]]>
+</script>
+<body>
+<form method="POST" action="/participants/" id="listForm" class="listForm">
+    {% csrf_token %}
+ <table id="myTable" class="table table-hover">
+    <thead>
+      <tr>
+        <th>Participant Id</th>
+        <th>Full Name</th>
+        <th>Year Born</th>
+        <th>Number of Siblings</th>
+        <th>Known Genetic Mutations</th>
+        <th>Known Environmental Exposures</th>
+        <th>ACTION</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for participant in list %}
+      <tr>
+          <td>{{ participant.id }}</td>
+        <td>{{ participant.name }}</td>
+        <td>{{ participant.year_born }}</td>
+        <td>{{ participant.number_of_siblings }}</td>
+        <td>{{ participant.genetic_mutations }}</td>
+        <td>{{ participant.environmental_exposures }}</td>
+        <td class="dropdown"><a class="btn btn-default actionButton"
+          data-toggle="dropdown" href="#">{{ participant.status }}</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <ul id="contextMenu" class="dropdown-menu" role="menu">
+    <li class="action" name="Not Reviewed" participantId=""><a tabindex="-1">Not Reviewed</a></li>
+    <li class="action" name="Accepted" participantId=""><a tabindex="-1">Accept</a></li>
+    <li class="action" name="Rejected" participantId=""><a tabindex="-1">Reject</a></li>
+  </ul>
+  <input type=hidden name="action" value="">
+  <input type=hidden name="participantId" value="">
+</form>
+</body>
+</html>
