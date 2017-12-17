@@ -23,7 +23,7 @@ def add(request):
     args.update(csrf(request))
 
     args['form'] = form
-    return render_to_response('participants/add.html', args)
+    return render_to_response('add.html', args)
 
 # list view
 def list(request):
@@ -37,4 +37,4 @@ def list(request):
     else:
         list = Participant.objects.all()
         context = { 'list' : list }
-        return render(request, 'participants/list.html', context)
+        return render(request, 'list.html', context)
