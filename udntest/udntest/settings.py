@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+LOGIN_REDIRECT_URL = '/participants' # to participants
 # Add static folder to STATIC_DIRS
 STATICFILES_DIRS = [
 os.path.join(BASE_DIR, "static"),

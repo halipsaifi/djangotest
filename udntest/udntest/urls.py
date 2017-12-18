@@ -1,24 +1,17 @@
-"""udntest URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/1.11/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.conf.urls import url, include
-    2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
-"""
 from django.conf.urls import url, include
 from django.contrib import admin
-from participants import views
+# Add build_in auth views, like login ...
+from django.contrib.auth import views as auth_views
+from participants.forms import LoginForm
+from participants.views import add, register_user, register_ok
+
 
 urlpatterns = [
-    url(r'^$', views.add, name='add_data'),
+    url(r'^$', add, name='add_data'),
     url(r'^participants/', include('participants.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^login/$', auth_views.login, {'template_name': 'login.html', 'authentication_form': LoginForm}),
+    url(r'^logout/$', auth_views.logout, {'next_page': '/'}),
+    url(r'^register/$', register_user),
+    url(r'^register_ok/$', register_ok),
 ]
