@@ -10,19 +10,19 @@ from django.template.context_processors import csrf
 
 # DataForm view
 def add(request):
+    args = {}
+    args.update(csrf(request))
     if request.POST:
         form = DataForm(request.POST)
         if form.is_valid():
             form.save()
 
             return HttpResponseRedirect('/participants')
-    else:
-        form = DataForm()
+        else:
+            args['form'] = form
+            return render(request, 'add.html', args)
 
-    args = {}
-    args.update(csrf(request))
-
-    args['form'] = form
+    args['form'] = DataForm()
     return render_to_response('add.html', args)
 
 # list view

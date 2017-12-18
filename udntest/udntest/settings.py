@@ -25,7 +25,7 @@ SECRET_KEY = 'spboab2--u2)bnr$w5tx0$k*1enq$wc_e%%uteo$&i70@9sjcc'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Add static folder to STATIC_DIRS
 STATICFILES_DIRS = [
