@@ -1,10 +1,17 @@
 # djangotest
-A test coding for UDN in Django:
 
-Dec 18, 2017: New features include login and register pages, access to the list of participants requires authentication. User can register, then login to see the list page. 
+A test coding in Django:
 
+with the following:
+1. Use Django Form API, see participants addData form
+2. Normal forms handling with JQuery, see participants List page
+3. base templates, header, footer and common static resources, see static and templates
+4. build-in user register, no admin privileges, see register
+5. build-in login/authentication existing users (no admin privileges), see Login
+6. ROM, participants.models.Participant
 
-I used forms on both pages/views (list view and data collection view), the form on list view only change the dropdown values/status, which is less vulnerable, so I did not use Django Form api. On the data collection page/view, yes, I did it with Django Form with clean_data and validations.
-User start with the data collection form, after successful submission, user is redirected to the list view. On list view page, a dropdown menu is attached to each participant, and changing of the dropdown will save the field alongside the participant data.
+branch ec-auth:
+7. external authentication, service and login
+8. Django user API, see create new user after ec-authentication
 
-I used Bootstrap/JQuery javascript library on the List View to make it look good on different devices. I added some simple unit tests following the TDD book. 
+User start with the data collection form, after successful submission, user is redirected to login (or register in master branch). After successful authentication, user is redirected to the list view. On list view page, a dropdown menu is attached to each participant, and changing of the dropdown will save the field alongside the participant data.
