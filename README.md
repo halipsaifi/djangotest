@@ -12,7 +12,7 @@ with the following:
 
 branch ec-auth:
 
-7. external authentication: HMS eCommons Authentication, service and login
+7. external authentication: HMS eCommons Authentication, see service and login
 8. Django user API, see create new user after ec-authentication
 
 User start with the data collection form, after successful submission, user is redirected to login (or register in master branch). After successful authentication, user is redirected to the list view. On list view page, a dropdown menu is attached to each participant, and changing of the dropdown will save the field alongside the participant data.
