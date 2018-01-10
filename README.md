@@ -3,6 +3,7 @@
 A test coding in Django:
 
 with the following:
+
 1. Use Django Form API, see participants addData form
 2. Normal form handling with JQuery, see participants List page
 3. base templates, header, footer and common static resources, see static and templates
@@ -10,7 +11,7 @@ with the following:
 5. build-in login/authentication existing users (no admin privileges), see Login
 6. ROM, participants.models.Participant
 
-branch ec-auth:
+branch ec-auth (HMS eCommons Authentication):
 
 7. external authentication: HMS eCommons Authentication, see service and login
 8. Django user API, see create new user after ec-authentication
