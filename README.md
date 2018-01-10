@@ -6,7 +6,7 @@ with the following:
 
 1. Use Django Form API, see participants addData form
 2. Normal form handling with JQuery, see participants List page
-3. base templates, header, footer and common static resources, see static and templates
+3. base template, header, footer and common static resources, see static and templates
 4. build-in user register, no admin privileges, see register
 5. build-in login/authentication existing users (no admin privileges), see Login
 6. ROM, participants.models.Participant
