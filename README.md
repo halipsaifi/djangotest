@@ -11,6 +11,7 @@ with the following:
 6. ROM, participants.models.Participant
 
 branch ec-auth:
+
 7. external authentication, service and login
 8. Django user API, see create new user after ec-authentication
 
