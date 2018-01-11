@@ -8,29 +8,11 @@ from .forms import DataForm
 from django.http import HttpResponseRedirect
 from django.template.context_processors import csrf
 from django.contrib.auth.decorators import login_required
-from .forms import RegisterUserForm
+from .forms import ECUserForm
+
+from django.views.generic import View
 
 # Create your views here.
-def register_user(request):
-    args = {}
-    args.update(csrf(request))
-    if request.POST:
-        form = RegisterUserForm(request.POST)
-        if form.is_valid():
-            form.save()
-
-            return HttpResponseRedirect('/register_ok/')
-        else:
-            args['form'] = form
-            return render(request, 'register.html', args)
-
-
-    args['form'] = RegisterUserForm()
-    return render_to_response('register.html', args)
-
-def register_ok(request):
-    return render_to_response('register_ok.html')
-
 # DataForm view
 def add(request):
     args = {}
@@ -65,3 +47,22 @@ def list(request):
         list = Participant.objects.all()
         context = { 'list' : list }
         return render(request, 'list.html', context)
+
+#for ec-auth
+# replace old register_user with ec_user form view
+class ECUserFormView(View):
+    form_class = ECUserForm
+    template = 'login.html'
+
+    def get(self, request):
+        form = self.form_class(None)
+        return render(request, self.template, {'form' : form})
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user.set_password(password)
+            user.save()
