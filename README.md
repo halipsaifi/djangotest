@@ -9,7 +9,7 @@ with the following:
 3. base template, header, footer and common static resources, see static and templates
 4. build-in user register, no admin privileges, see register
 5. build-in login/authentication existing users (no admin privileges), see Login
-6. ROM, participants.models.Participant
+6. FBV (functioanl based views) vs CBV (class based views), see ECUserFormView
 
 branch ec-auth (HMS eCommons Authentication):
 
