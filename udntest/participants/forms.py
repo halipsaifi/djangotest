@@ -26,15 +26,8 @@ class DataForm(forms.ModelForm):
         }
 
 # for ec-Auth
-class ECUserForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ('username', 'password')
-        help_texts = {
-            'username': None,
-            'password': None,
-        }
-        widgets = {
-            'username': forms.TextInput(attrs={'class': 'form-control', 'name': 'username'}),
-            'password': forms.TextInput(attrs={'class': 'form-control', 'name': 'password', 'type': 'password'}),
-        }
+class ECUserForm(forms.Form):
+    username = forms.CharField(label="Username", max_length=30,
+                               widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'username'}))
+    password = forms.CharField(label="Password", max_length=30,
+                               widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'password', 'type': 'password'}))
