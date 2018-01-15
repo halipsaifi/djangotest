@@ -3,12 +3,12 @@ from django.shortcuts import (
     redirect,
     render_to_response,
 )
-from .models import Participant
-from .forms import DataForm
 from django.http import HttpResponseRedirect
 from django.template.context_processors import csrf
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
+from .models import Participant
+from .forms import DataForm
 # for ec_auth
 from .forms import ECUserForm
 from .services import ec_auth, username_present

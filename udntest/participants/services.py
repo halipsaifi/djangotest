@@ -2,6 +2,7 @@ import requests
 import ast
 from django.contrib.auth.models import User
 
+#HMS eCommons authentication
 def ec_auth(ecid, password):
     url = 'https://legacy.countway.harvard.edu/ws/ecommonsauth.cgi'
     params = {'user': ecid, 'pass': password}
@@ -13,12 +14,9 @@ def ec_auth(ecid, password):
         'lastname':'"+resp.replace('\t', ' ').split(' ')[1]+"',\
         'email':'"+resp.replace('\t', ' ').split(' ')[2]+"'}"
         userInfo = ast.literal_eval(data)
-        print(userInfo)
         return userInfo
-    else:
-        return None
-
-
+    return None
+#check if user exists
 def username_present(username):
     if User.objects.filter(username=username).exists():
         return True
