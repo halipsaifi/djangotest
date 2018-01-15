@@ -1,8 +1,5 @@
-# put master brach code in """ for now
 from django import forms
 from .models import Participant
-# user model
-from django.contrib.auth.models import User
 
 #add forms
 class DataForm(forms.ModelForm):

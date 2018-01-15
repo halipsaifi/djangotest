@@ -1,4 +1,5 @@
 import requests
+import ast
 from django.contrib.auth.models import User
 
 def ec_auth(ecid, password):
@@ -7,7 +8,12 @@ def ec_auth(ecid, password):
     r = requests.get(url, params=params)
     resp = r.content.decode("utf-8")
     if r.status_code == 200 and resp != 'null':
-        userInfo = {'username' : ecid}
+        data = "{'username':'"+ecid+"',\
+        'firstname':'"+resp.split(' ')[0]+"',\
+        'lastname':'"+resp.replace('\t', ' ').split(' ')[1]+"',\
+        'email':'"+resp.replace('\t', ' ').split(' ')[2]+"'}"
+        userInfo = ast.literal_eval(data)
+        print(userInfo)
         return userInfo
     else:
         return None

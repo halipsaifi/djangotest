@@ -8,7 +8,7 @@ from .forms import DataForm
 from django.http import HttpResponseRedirect
 from django.template.context_processors import csrf
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import login
 # for ec_auth
 from .forms import ECUserForm
 from .services import ec_auth, username_present
@@ -46,7 +46,11 @@ def list(request):
         return redirect('/participants')
     else:
         list = Participant.objects.all()
-        context = { 'list' : list, 'username' : request.user.username }
+        context = { 'list' : list,
+                    'username' : request.user.username,
+                    'firstname' : request.user.first_name,
+                    'lastname' : request.user.last_name,
+                    'email' : request.user.email}
         return render(request, 'list.html', context)
 
 #for ec-auth
@@ -65,15 +69,17 @@ class ECUserFormView(View):
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            #call HMS eComons authentication
-            #if OK, login or create a new if not exists
+            #call HMS eComons authentication service
+            #if OK, login or create a new if not exists yet
             if ec_auth(username, password):
                 if username_present(username):
                     user = User.objects.get(username=username)
                     login(request, user)
                     return redirect('/participants?exist')
                 else:
-                    user = User.objects.create_user(username=username,)
+                    r = ec_auth(username, password)
+                    user = User.objects.create_user(username=r['username'],
+                    email=r['email'], first_name=r['firstname'], last_name=r['lastname'])
                     user.set_unusable_password()
                     user = User.objects.get(username=username)
                     login(request, user)
